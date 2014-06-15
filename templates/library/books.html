@@ -1,0 +1,70 @@
+{% extends 'library/../base.html' %}
+{% block special_head_includes %}
+    <link href="/static/css/offcanvas.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<div class="container">
+
+    <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+            <p class="pull-right visible-xs">
+                <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+            </p>
+            <div class="jumbotron">
+                <h1>Hello, world!</h1>
+                <p>This is an example to show the potential of an offcanvas layout pattern in Bootstrap.
+                    Try some responsive-range viewport sizes to see it in action.</p>
+            </div>
+            <div class="row">
+                {% for book in books_list %}
+                    <div class="col-sm-6 col-md-4">
+                        <div class="thumbnail">
+                            <img data-src="holder.js/300x200" alt="300x200" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMjAwIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSI+PC9yZWN0Pjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjE1MCIgeT0iMTAwIiBzdHlsZT0iZmlsbDojYWFhO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjE5cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+MzAweDIwMDwvdGV4dD48L3N2Zz4=" style="width: 300px; height: 200px;">
+                            <div class="caption">
+                                <h3>{{ book.title }}</h3>
+                                <h4>{% for author in book.get_authors %}
+                                    <a href="/author/{{ author.id }}">{{ author.pseudo_name }}</a>
+                                    {% endfor %}
+                                </h4>
+                                <h5>{{ book.publisher }} ({{ book.year }})</h5>
+                                <p>{{ book.notes }}</p>
+                                <p>
+                                    {% if user.has_read_the_book %}
+                                        <a href="#" class="btn btn-default" role="button">Already read</a>
+                                    {% else %}
+                                        <a href="#" class="btn btn-primary" role="button">Read</a>
+                                    {% endif %}
+
+                                    <a href="#" class="btn btn-default" role="button">Add to library</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div><!--/span-->
+                {% endfor %}
+            </div><!--/row-->
+        </div><!--/span-->
+
+        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+            <div class="list-group">
+                <a href="#" class="list-group-item active">Link</a>
+                <a href="#" class="list-group-item">Link</a>
+                <a href="#" class="list-group-item">Link</a>
+                <a href="#" class="list-group-item">Link</a>
+                <a href="#" class="list-group-item">Link</a>
+                <a href="#" class="list-group-item">Link</a>
+                <a href="#" class="list-group-item">Link</a>
+                <a href="#" class="list-group-item">Link</a>
+                <a href="#" class="list-group-item">Link</a>
+                <a href="#" class="list-group-item">Link</a>
+            </div>
+        </div><!--/span-->
+    </div><!--/row-->
+
+    <hr>
+
+</div>
+{% endblock %}
+{% block special_footer_includes %}
+    <script src="/static/js/offcanvas.js"></script>
+{% endblock %}
