@@ -1,3 +1,35 @@
 {% extends 'library/../base.html' %}
 {% block content %}
+    <section id="bookDetail">
+        <section id="generalInfo">
+            <img src="">
+            <h1>Book title</h1>
+            <h2>Author pseudo(get authors)</h2>
+            <h3>Publish House</h3>
+            <h3>Year</h3>
+            <h4>ISBN Number</h4>
+            <p>
+                <h3>Annotation</h3>
+                <p>
+                    some text about book
+                </p>
+            </p>
+            <p>
+                pages count
+            </p>
+            <p>
+                status and currently read
+            </p>
+        </section>
+        <section id="notes">
+            <h2>Notes</h2>
+{#            {% for note in book.get %}#}
+        </section>
+        <section id="reviews">
+            <h2>Reviews</h2>
+        </section>
+        <section id="quotes">
+            <h2>Quotes</h2>
+        </section>
+    </section>
 {% endblock %}
