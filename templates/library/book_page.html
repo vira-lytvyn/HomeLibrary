@@ -3,22 +3,26 @@
     <section id="bookDetail">
         <section id="generalInfo">
             <img src="">
-            <h1>Book title</h1>
-            <h2>Author pseudo(get authors)</h2>
-            <h3>Publish House</h3>
-            <h3>Year</h3>
-            <h4>ISBN Number</h4>
+            <h1>{{ book.title }}</h1>
+            <h2>
+                {% for author in book.get_authors %}
+                {{ author.first_name }} {{ author.last_name }}
+                {% endfor %}
+            </h2>
+            <h3>{{ book.publisher }}</h3>
+            <h3>{{ book.year }}</h3>
+            <h4>{{ book.isbn_number }}</h4>
             <p>
                 <h3>Annotation</h3>
                 <p>
-                    some text about book
+                   {{ book.annotation }}
                 </p>
             </p>
             <p>
-                pages count
+               {{ book.pages }}
             </p>
             <p>
-                status and currently read
+                {% if book.present_status %} present {% endif %}
             </p>
         </section>
         <section id="notes">

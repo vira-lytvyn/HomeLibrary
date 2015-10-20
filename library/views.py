@@ -6,8 +6,6 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from models import UserProfile, Book, Author, PublishingHouse
 
-# Create your views here.
-
 
 @csrf_exempt
 def user_login(request):
@@ -46,7 +44,12 @@ def view_user_profile(request, user_id):
 
 @csrf_exempt
 def view_book(request, book_id):
-    return render(request, 'library/book_page.html')
+    user = request.user
+    book = Book.objects.get(id == book_id)
+    if user.is_authenticated():
+        is_favourite = UserProfile.objects.get(id == user.id).is_one_of_favourite(book_id)
+
+    return render(request, 'library/book_page.html', {'book': book})
 
 
 @csrf_exempt
